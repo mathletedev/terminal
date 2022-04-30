@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="og:title" content="MathleteDev" />
+		<meta name="og:description" content="MathleteDev's website" />
+		<meta name="og:image" content="https://mathletedev.github.io/icon.jpg" />
+		<meta name="theme-color" content="#282c34" />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<title>MathleteDev</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css"
+		/>
+		<style type="text/css">
+			html {
+				background-color: #282c34;
+			}
+
+			body {
+				font-family: "Cascadia Code";
+				font-size: 18px;
+			}
+
+			#prompt {
+				color: #61afef;
+			}
+
+			#cursor {
+				display: inline-block;
+				position: relative;
+				top: -2px;
+				vertical-align: middle;
+				width: 10px;
+				height: 23px;
+				background-color: #dcdfe4;
+			}
+		</style>
+		<script src="bundle.js" defer></script>
+	</head>
+	<body>
+		<div id="root">
+			<div id="line">
+				<span id="prompt">λ</span>
+				<span id="command"></span>
+				<span id="cursor"></span>
+			</div>
+		</div>
+	</body>
+</html>

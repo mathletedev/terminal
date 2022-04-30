@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es6"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
