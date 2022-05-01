@@ -12,7 +12,6 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css"
 		/>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
 		<style type="text/css">
 			html {
 				background-color: #282c34;
@@ -22,6 +21,7 @@
 				margin: 0;
 				font-family: "Cascadia Code";
 				font-size: 18px;
+				overflow-x: wrap;
 			}
 
 			#root {
@@ -43,20 +43,22 @@
 				white-space: pre;
 			}
 
+			input {
+				all: unset;
+				width: calc(100vw - 32px);
+				color: #dcdfe4;
+				caret-color: transparent;
+			}
+
 			#cursor {
 				display: inline-block;
 				position: relative;
+				left: -100px;
 				top: -2px;
 				vertical-align: middle;
 				width: 10px;
 				height: 21px;
 				background-color: #dcdfe4;
-			}
-
-			.simple-keyboard {
-				position: fixed;
-				left: 0;
-				bottom: 0;
 			}
 		</style>
 		<script src="bundle.js" defer></script>
@@ -64,7 +66,7 @@
 	<body>
 		<div id="root">
 			<div id="line">
-				<span id="prompt">λ </span><span id="command"></span><span id="cursor" />
+				<span id="prompt">λ </span><input autofocus /></span><span id="cursor" />
 			</div>
 		</div>
 	</body>
