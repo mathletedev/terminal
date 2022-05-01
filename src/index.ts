@@ -7,19 +7,6 @@ let cursor = document.querySelector("#cursor") as HTMLSpanElement;
 
 let wait = 0;
 
-window.onkeydown = ({ key }) => {
-	input.focus();
-	wait = Date.now();
-
-	if (key === "Enter") {
-		echo(input.value);
-		echo();
-		input.value = "";
-	}
-};
-
-input.onblur = () => input.focus();
-
 const echo = (text?: string, color?: string) => {
 	if (!text) {
 		root.insertBefore(document.createElement("br"), line);
@@ -32,6 +19,42 @@ const echo = (text?: string, color?: string) => {
 
 	root.insertBefore(span, line);
 };
+
+const echoLn = (text?: string) => {
+	echo(text);
+	echo();
+};
+
+echo();
+echoLn("               WWNNWW    WNXXW");
+echoLn("          WXOdlccc::cldxdl:,:K");
+echoLn("        W0o;,,,,,,,'',:::;,'lN");
+echoLn("      WKo'.';;::clloddoc:c:,xW");
+echoLn(" WXkdoc,.,clodxxxxxxdl:col,.lX");
+echoLn(" WO:.''.':llooddxddl::looc'.'xW");
+echoLn("  WXxc'.;oolllllc:;:loooo;,;.lN");
+echoLn("     Xl.,lxkkkkkdc,:ododl,::.oN");
+echoLn("      O;.';cdkkkkdc:cooo:,:,,O");
+echoLn("      Wk;';;;:oxkkxl:ldl,.',kW");
+echoLn("       W0l,,;,,:oxkxc:c;.'l0W");
+echoLn("         W0dc;,..,;;,...:OW");
+echoLn("            WX0Okxdc,..'xW");
+echoLn("                   W0o,:K");
+echoLn("                     WXXW");
+echo();
+
+window.onkeydown = ({ key }) => {
+	input.focus();
+	wait = Date.now();
+
+	if (key === "Enter") {
+		echo(input.value);
+		echo();
+		input.value = "";
+	}
+};
+
+input.onblur = () => input.focus();
 
 const loop = () => {
 	requestAnimationFrame(loop);
