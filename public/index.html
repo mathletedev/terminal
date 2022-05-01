@@ -12,14 +12,26 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/cascadia-code.min.css"
 		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
 		<style type="text/css">
 			html {
 				background-color: #282c34;
 			}
 
 			body {
+				margin: 0;
 				font-family: "Cascadia Code";
 				font-size: 18px;
+			}
+
+			#root {
+				overflow-y: scroll;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			#root::-webkit-scrollbar {
+				display: none;
 			}
 
 			#prompt {
@@ -28,6 +40,7 @@
 
 			#command {
 				color: #dcdfe4;
+				white-space: pre;
 			}
 
 			#cursor {
@@ -36,8 +49,14 @@
 				top: -2px;
 				vertical-align: middle;
 				width: 10px;
-				height: 23px;
+				height: 21px;
 				background-color: #dcdfe4;
+			}
+
+			.simple-keyboard {
+				position: fixed;
+				left: 0;
+				bottom: 0;
 			}
 		</style>
 		<script src="bundle.js" defer></script>
