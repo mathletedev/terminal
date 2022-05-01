@@ -41,9 +41,8 @@ const loop = () => {
 			? "23px"
 			: `${23 - Math.pow(Math.sin(Date.now() / 300), 4) * 23}px`;
 
-	cursor.style.left = `${
-		-window.innerWidth + 22 + (input.selectionStart! + 1) * 10.55
-	}px`;
+	const pos = -window.innerWidth + 22 + (input.selectionStart! + 1) * 10.55;
+	cursor.style.left = pos > 0 ? "0px" : `${pos}px`;
 };
 
 requestAnimationFrame(loop);
