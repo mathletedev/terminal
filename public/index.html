@@ -15,6 +15,12 @@
 		<style type="text/css">
 			html {
 				background-color: #282c34;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+			}
+
+			html::-webkit-scrollbar {
+				width: 0;
 			}
 
 			body {
@@ -24,22 +30,13 @@
 				overflow-x: wrap;
 			}
 
-			#root {
-				overflow-y: scroll;
-				-ms-overflow-style: none;
-				scrollbar-width: none;
-			}
-
-			#root::-webkit-scrollbar {
-				display: none;
-			}
-
 			span {
 				white-space: pre;
 			}
 
 			#prompt {
 				color: #61afef;
+				margin-bottom: 10px;
 			}
 
 			#command {
@@ -58,9 +55,9 @@
 				display: inline-block;
 				position: relative;
 				top: -2px;
-				vertical-align: middle;
 				width: 10px;
-				height: 21px;
+				height: 18px;
+				vertical-align: middle;
 				background-color: #dcdfe4;
 			}
 		</style>

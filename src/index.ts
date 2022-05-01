@@ -9,13 +9,17 @@ let wait = 0;
 
 const echo = (text?: string, color?: string) => {
 	if (!text) {
-		root.insertBefore(document.createElement("br"), line);
+		const br = document.createElement("br");
+		br.className = "text";
+		root.insertBefore(br, line);
+
 		return line.scrollIntoView();
 	}
 
 	let span = document.createElement("span");
 	span.innerHTML = text;
 	span.style.color = color || __colors__.white;
+	span.className = "text";
 
 	root.insertBefore(span, line);
 };
@@ -23,6 +27,10 @@ const echo = (text?: string, color?: string) => {
 const echoLn = (text?: string) => {
 	echo(text);
 	echo();
+};
+
+const clear = () => {
+	for (const elem of document.querySelectorAll(".text")) elem.remove();
 };
 
 echo();
@@ -43,13 +51,18 @@ echoLn("                   W0o,:K");
 echoLn("                     WXXW");
 echo();
 
-window.onkeydown = ({ key }) => {
+window.onkeydown = (ev) => {
 	input.focus();
 	wait = Date.now();
 
-	if (key === "Enter") {
-		echo(input.value);
-		echo();
+	if (ev.key === "l" && ev.ctrlKey) {
+		clear();
+		return ev.preventDefault();
+	}
+
+	if (ev.key === "Enter") {
+		if (input.value === "clear") clear();
+		else echoLn(input.value);
 		input.value = "";
 	}
 };
@@ -61,8 +74,8 @@ const loop = () => {
 
 	cursor.style.height =
 		wait + __cursorDelay__ > Date.now()
-			? "23px"
-			: `${23 - Math.pow(Math.sin(Date.now() / 300), 4) * 23}px`;
+			? "18px"
+			: `${18 - Math.pow(Math.sin(Date.now() / 300), 4) * 18}px`;
 
 	const pos = -window.innerWidth + 22 + (input.selectionStart! + 1) * 10.55;
 	cursor.style.left = pos > 0 ? "0px" : `${pos}px`;
