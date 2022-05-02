@@ -14,6 +14,11 @@ export default class Terminal {
 			this.last = Date.now();
 
 			if (ev.key === "Enter") {
+				if (this.input.value.trim() === "") {
+					this.echoLn("λ ", __colors__.blue);
+					return this.echo();
+				}
+
 				if (commands[this.command]) {
 					this.echoLn(`λ ${this.input.value}`, __colors__.blue);
 					commands[this.command](this);
