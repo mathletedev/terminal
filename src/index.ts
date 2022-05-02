@@ -1,4 +1,4 @@
-import { __colors__, __cursorDelay__ } from "./lib/constants";
+import { __colors__, __cursorDelay__, __mobile__ } from "./lib/constants";
 
 let root = document.querySelector("#root")!;
 let line = document.querySelector("#line")!;
@@ -24,8 +24,8 @@ const echo = (text?: string, color?: string) => {
 	root.insertBefore(span, line);
 };
 
-const echoLn = (text?: string) => {
-	echo(text);
+const echoLn = (text?: string, color?: string) => {
+	echo(text, color);
 	echo();
 };
 
@@ -33,15 +33,44 @@ const clear = () => {
 	for (const elem of document.querySelectorAll(".text")) elem.remove();
 };
 
+const INFO = [
+	["User", "MathleteDev"],
+	["OS", "Arch Linux"],
+	["Language", "TypeScript"],
+	["Grade", "Freshman"],
+	["Subject", "Math"],
+	["Hobby", "Violin"]
+];
+
+const info = (i: string | number) => {
+	if (typeof i === "string") return echo(i, __colors__.magenta);
+
+	echo(INFO[i][0], __colors__.blue);
+	echo(" => ", __colors__.cyan);
+	echo(INFO[i][1], __colors__.green);
+};
+
+const ascii = (text: string, i: string | number) => {
+	if (__mobile__) return echoLn(text);
+
+	echo(`${text}${" ".repeat(34 - text.length)}`);
+	info(i);
+	echo();
+};
+
 echo();
-echoLn("               WWNNWW    WNXXW");
-echoLn("          WXOdlccc::cldxdl:,:K");
-echoLn("        W0o;,,,,,,,'',:::;,'lN");
-echoLn("      WKo'.';;::clloddoc:c:,xW");
-echoLn(" WXkdoc,.,clodxxxxxxdl:col,.lX");
-echoLn(" WO:.''.':llooddxddl::looc'.'xW");
-echoLn("  WXxc'.;oolllllc:;:loooo;,;.lN");
-echoLn("     Xl.,lxkkkkkdc,:ododl,::.oN");
+if (__mobile__) {
+	echoLn("        neo@mathletedev", __colors__.magenta);
+	echoLn("        ---------------", __colors__.magenta);
+}
+ascii("               WWNNWW    WNXXW", "neo@delta");
+ascii("          WXOdlccc::cldxdl:,:K", "---------");
+ascii("        W0o;,,,,,,,'',:::;,'lN", 0);
+ascii("      WKo'.';;::clloddoc:c:,xW", 1);
+ascii(" WXkdoc,.,clodxxxxxxdl:col,.lX", 2);
+ascii(" WO:.''.':llooddxddl::looc'.'xW", 3);
+ascii("  WXxc'.;oolllllc:;:loooo;,;.lN", 4);
+ascii("     Xl.,lxkkkkkdc,:ododl,::.oN", 5);
 echoLn("      O;.';cdkkkkdc:cooo:,:,,O");
 echoLn("      Wk;';;;:oxkkxl:ldl,.',kW");
 echoLn("       W0l,,;,,:oxkxc:c;.'l0W");
@@ -50,6 +79,9 @@ echoLn("            WX0Okxdc,..'xW");
 echoLn("                   W0o,:K");
 echoLn("                     WXXW");
 echo();
+echo("Type ");
+echo("help", __colors__.blue);
+echoLn(" to begin!");
 
 window.onkeydown = (ev) => {
 	input.focus();
