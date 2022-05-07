@@ -2,6 +2,7 @@ import commands from "./commands";
 import { __colors__, __cursorDelay__ } from "./lib/constants";
 
 export default class Terminal {
+	public readonly created = Date.now();
 	private root = document.querySelector("#root")!;
 	private line = document.querySelector("#line")!;
 	private input = document.querySelector("input") as HTMLInputElement;
