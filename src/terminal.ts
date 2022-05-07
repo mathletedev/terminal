@@ -58,7 +58,7 @@ export default class Terminal {
 			br.className = "text";
 			this.root.insertBefore(br, this.line);
 
-			return this.line.scrollIntoView();
+			return this.line.scrollIntoView(false);
 		}
 
 		let span = document.createElement("span");

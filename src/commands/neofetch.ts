@@ -1,28 +1,36 @@
+import { getParser } from "bowser";
 import { __colors__, __mobile__ } from "../lib/constants";
 import { Command } from "../lib/types";
 
-const INFO = [
-	["User", "MathleteDev"],
-	["OS", "Arch Linux"],
-	["Language", "TypeScript"],
-	["Grade", "Freshman"],
-	["Subject", "Math"],
-	["Hobby", "Violin"]
-];
-
 export default ((term) => {
+	const parser = getParser(navigator.userAgent);
+	const data = [
+		["💾 OS", parser.getOSName()],
+		[
+			`${parser.getPlatformType() === "desktop" ? "💻" : "📱"} Platform`,
+			parser.getPlatformType()[0].toUpperCase() +
+				parser.getPlatformType().slice(1)
+		],
+		["⚙️ Engine", parser.getEngineName()],
+		["🌐 Browser", parser.getBrowserName()],
+		["⌨️ Language", "TypeScript"],
+		["👤 User", "MathleteDev"]
+	];
+
 	const info = (i: string | number) => {
 		if (typeof i === "string") return term.echoLn(i, __colors__.magenta);
 
-		term.echo(INFO[i][0], __colors__.blue);
+		term.echo(data[i][0], __colors__.blue);
 		term.echo(" => ", __colors__.cyan);
-		term.echoLn(INFO[i][1], __colors__.green);
+		term.echoLn(data[i][1], __colors__.green);
 	};
 
-	const ascii = (text: string, i: string | number) => {
+	const ascii = (text: string, i?: string | number) => {
 		if (__mobile__) return term.echoLn(text);
 
-		term.echo(`${text}${" ".repeat(34 - text.length)}`);
+		term.echo(`${text}${" ".repeat(34 - text.length)}`, __colors__.yellow);
+		if (i === undefined) return term.echo();
+
 		info(i);
 	};
 
@@ -34,20 +42,20 @@ export default ((term) => {
 	ascii(" WO:.''.':llooddxddl::looc'.'xW", 3);
 	ascii("  WXxc'.;oolllllc:;:loooo;,;.lN", 4);
 	ascii("     Xl.,lxkkkkkdc,:ododl,::.oN", 5);
-	term.echoLn("      O;.';cdkkkkdc:cooo:,:,,O");
-	term.echoLn("      Wk;';;;:oxkkxl:ldl,.',kW");
-	term.echoLn("       W0l,,;,,:oxkxc:c;.'l0W");
-	term.echoLn("         W0dc;,..,;;,...:OW");
-	term.echoLn("            WX0Okxdc,..'xW");
-	term.echoLn("                   W0o,:K");
-	term.echoLn("                     WXXW");
+	ascii("      O;.';cdkkkkdc:cooo:,:,,O");
+	ascii("      Wk;';;;:oxkkxl:ldl,.',kW");
+	ascii("       W0l,,;,,:oxkxc:c;.'l0W");
+	ascii("         W0dc;,..,;;,...:OW");
+	ascii("            WX0Okxdc,..'xW");
+	ascii("                   W0o,:K");
+	ascii("                     WXXW");
 	term.echo();
 
 	if (!__mobile__) return;
 
 	term.echoLn("neo@mathletedev", __colors__.magenta);
 	term.echoLn("---------------", __colors__.magenta);
-	for (let i = 0; i < INFO.length; i++) info(i);
+	for (let i = 0; i < data.length; i++) info(i);
 
 	term.echo();
 }) as Command;
