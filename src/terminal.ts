@@ -7,6 +7,9 @@ export default class Terminal {
 	private line = document.querySelector("#line")!;
 	private input = document.querySelector("input") as HTMLInputElement;
 	private cursor = document.querySelector("#cursor") as HTMLSpanElement;
+	private history: string[] = [];
+	private current = 0;
+	private value = "";
 	private last = 0;
 
 	public constructor() {
@@ -14,37 +17,77 @@ export default class Terminal {
 			this.input.focus();
 			this.last = Date.now();
 
-			if (ev.key === "Enter") {
-				if (this.input.value.trim() === "") {
-					this.echoLn("λ ", __colors__.blue);
-					return this.echo();
-				}
+			switch (ev.key) {
+				case "Enter":
+					if (this.input.value.trim() === "") {
+						this.echoLn("λ ", __colors__.blue);
+						this.echo();
+						break;
+					}
 
-				if (commands[this.command]) {
-					this.echoLn(`λ ${this.input.value}`, __colors__.blue);
-					commands[this.command](this);
-				} else {
+					this.history = this.history.filter((e) => e !== this.input.value);
+					this.history.unshift(this.input.value);
+
+					if (commands[this.command]) {
+						this.echoLn(`λ ${this.input.value}`, __colors__.blue);
+						commands[this.command](this);
+					} else {
+						this.echo("λ ", __colors__.blue);
+						this.echoLn(this.input.value, __colors__.red);
+						this.echo("Unknown command: ");
+						this.echoLn(this.command, __colors__.red);
+						this.echo();
+					}
+
+					this.input.value = "";
+					break;
+
+				case "ArrowUp":
+					ev.preventDefault();
+					if (!this.history.length) break;
+					if (this.current === -1) this.value = this.input.value;
+
+					if (this.current < this.history.length - 1) this.current++;
+					this.input.value = this.history[this.current];
+
+					this.update();
+					this.end();
+					break;
+
+				case "ArrowDown":
+					ev.preventDefault();
+					if (this.current === -1) break;
+
+					this.current--;
+					if (this.current === -1) this.input.value = this.value;
+					else this.input.value = this.history[this.current];
+
+					this.update();
+					this.end();
+					break;
+
+				case "c":
+					if (!ev.ctrlKey) break;
 					this.echo("λ ", __colors__.blue);
 					this.echoLn(this.input.value, __colors__.red);
-					this.echo("Unknown command: ");
-					this.echoLn(this.command, __colors__.red);
 					this.echo();
-				}
 
-				return (this.input.value = "");
-			}
+					this.input.value = "";
+					break;
 
-			if (ev.key === "l" && ev.ctrlKey) {
-				this.clear();
-				return ev.preventDefault();
+				case "l":
+					if (!ev.ctrlKey) break;
+					this.clear();
+					ev.preventDefault();
+					break;
 			}
 		};
 
 		this.input.onblur = () => this.input.focus();
-		this.input.oninput = () =>
-			(this.input.style.color = commands[this.command]
-				? __colors__.blue
-				: __colors__.white);
+		this.input.oninput = () => {
+			this.current = -1;
+			this.update();
+		};
 
 		this.echo();
 		commands.neofetch(this);
@@ -75,6 +118,11 @@ export default class Terminal {
 		this.echo();
 	}
 
+	public error(text?: string) {
+		this.echo("Error: ", __colors__.red);
+		if (text) this.echoLn(text);
+	}
+
 	public get command() {
 		return this.input.value.split(" ")[0];
 	}
@@ -86,10 +134,6 @@ export default class Terminal {
 		return args;
 	}
 
-	public clear() {
-		for (const elem of document.querySelectorAll(".text")) elem.remove();
-	}
-
 	public tick() {
 		this.cursor.style.height =
 			this.last + __cursorDelay__ > Date.now()
@@ -99,5 +143,22 @@ export default class Terminal {
 		const pos =
 			-window.innerWidth + 22 + (this.input.selectionStart! + 1) * 10.55;
 		this.cursor.style.left = pos > 0 ? "0px" : `${pos}px`;
+	}
+
+	public clear() {
+		for (const elem of document.querySelectorAll(".text")) elem.remove();
+	}
+
+	private update() {
+		this.input.style.color = commands[this.command]
+			? __colors__.blue
+			: __colors__.white;
+	}
+
+	private end() {
+		this.input.setSelectionRange(
+			this.input.value.length,
+			this.input.value.length
+		);
 	}
 }

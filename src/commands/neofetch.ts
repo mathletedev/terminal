@@ -44,7 +44,7 @@ export default ((term) => {
 	};
 
 	ascii("               WWNNWW    WNXXW", "neo@delta");
-	ascii("          WXOdlccc::cldxdl:,:K", "---------");
+	ascii("          WXOdlccc::cldxdl:,:K", "─────────");
 	ascii("        W0o;,,,,,,,'',:::;,'lN", 0);
 	ascii("      WKo'.';;::clloddoc:c:,xW", 1);
 	ascii(" WXkdoc,.,clodxxxxxxdl:col,.lX", 2);
