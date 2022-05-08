@@ -34,7 +34,7 @@ export default ((term) => {
 	};
 
 	const ascii = (text: string, i?: string | number) => {
-		if (__mobile__) return term.echoLn(text);
+		if (__mobile__) return term.echoLn(text, __colors__.yellow);
 
 		term.echo(`${text}${" ".repeat(34 - text.length)}`, __colors__.yellow);
 		if (i === undefined) return term.echo();
