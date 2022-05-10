@@ -1,7 +1,18 @@
 import { __colors__ } from "../lib/constants";
 import { Command } from "../lib/types";
 
+const COMMANDS = [
+	"clear",
+	"echo",
+	"help",
+	"ls",
+	"neofetch",
+	"old",
+	"skills",
+	"yes"
+];
+
 export default ((term) => {
-	term.echoLn("clear  echo  help  ls  neofetch skills yes", __colors__.blue);
+	term.echoLn(COMMANDS.join("  "), __colors__.blue);
 	term.echo();
 }) as Command;
