@@ -58,13 +58,11 @@ export default ((term) => {
 	ascii("            WX0Okxdc,..'xW");
 	ascii("                   W0o,:K");
 	ascii("                     WXXW");
-	term.echo();
 
 	if (!__mobile__) return;
+	term.echo();
 
 	term.echoLn("neo@mathletedev", __colors__.magenta);
 	term.echoLn("---------------", __colors__.magenta);
 	for (let i = 0; i < data.length; i++) info(i);
-
-	term.echo();
 }) as Command;

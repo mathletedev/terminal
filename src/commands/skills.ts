@@ -69,26 +69,22 @@ export default ((term) => {
 
 	if (!term.args.length) {
 		for (const title in STATS) stat(title);
-		return term.echo();
+		return;
 	}
 
 	const args = term.args.join(" ");
 	for (const title in STATS) {
 		if (title.toLowerCase().startsWith(args.toLowerCase())) {
 			stat(title);
-			return term.echo();
+			return;
 		}
 	}
 
 	const i = parseInt(args);
 	const keys = Object.keys(STATS);
-	if (i < keys.length) {
-		stat(keys[i]);
-		return term.echo();
-	}
+	if (i < keys.length) return stat(keys[i]);
 
 	term.error();
 	term.echo("Invalid argument ");
 	term.echoLn(args, __colors__.magenta);
-	term.echo();
 }) as Command;

@@ -12,7 +12,5 @@ const COMMANDS = [
 	"yes"
 ];
 
-export default ((term) => {
-	term.echoLn(COMMANDS.join("  "), __colors__.blue);
-	term.echo();
-}) as Command;
+export default ((term) =>
+	term.echoLn(COMMANDS.join("  "), __colors__.blue)) as Command;

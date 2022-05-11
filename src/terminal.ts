@@ -31,6 +31,7 @@ export default class Terminal {
 					if (commands[this.command]) {
 						this.echoLn(`λ ${this.input.value}`, __colors__.blue);
 						commands[this.command](this);
+						if (this.command !== "clear") this.echo();
 					} else {
 						this.echo("λ ", __colors__.blue);
 						this.echoLn(this.input.value, __colors__.red);
@@ -91,6 +92,7 @@ export default class Terminal {
 
 		this.echo();
 		commands.neofetch(this);
+		this.echo();
 		this.echo("Type ");
 		this.echo("help", __colors__.blue);
 		this.echoLn(" to begin!");
