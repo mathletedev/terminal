@@ -2,42 +2,27 @@ import { __colors__ } from "../lib/constants";
 import { Command } from "../lib/types";
 
 const STATS: Record<string, Record<string, number>> = {
+	Hobbies: {
+		Violin: 16,
+		Art: 14,
+		Multimedia: 13
+	},
 	Languages: {
-		TypeScript: 16,
-		"HTML/CSS": 13,
-		"C++": 14,
-		Python: 11,
-		Java: 10,
-		Go: 3,
-		Rust: 6,
-		Bash: 3,
-		Haskell: 1,
-		"C#": 5
+		English: 16,
+		Chinese: 9,
+		French: 5
 	},
-	Environment: {
-		Linux: 15,
-		Windows: 13,
-		"Vim/Neovim": 16,
-		VSCode: 14,
-		GitHub: 14
+	"Clubs & Activities": {
+		GPYO: 15,
+		Robotics: 14,
+		"CS Club": 16,
+		"Chess Club": 11,
+		"Know. Bowl": 5,
+		"Sci. Bowl": 7
 	},
-	"Libraries & Frameworks": {
-		"Vanilla JS": 15,
-		React: 15,
-		"Next.js": 16,
-		Tailwind: 16,
-		GraphQL: 13,
-		Express: 11
-	},
-	Databases: {
-		MongoDB: 14,
-		PostgreSQL: 6,
-		Firebase: 5
-	},
-	"Other Tools": {
-		Git: 13,
-		Yarn: 16,
-		Unity: 8
+	Sports: {
+		Tennis: 13,
+		Soccer: 9
 	}
 };
 

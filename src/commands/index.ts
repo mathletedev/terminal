@@ -1,4 +1,5 @@
 import { Command } from "../lib/types";
+import about from "./about";
 import clear from "./clear";
 import echo from "./echo";
 import help from "./help";
@@ -9,6 +10,7 @@ import skills from "./skills";
 import yes from "./yes";
 
 export default {
+	about,
 	clear,
 	echo,
 	help,

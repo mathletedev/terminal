@@ -93,9 +93,11 @@ export default class Terminal {
 		this.echo();
 		commands.neofetch(this);
 		this.echo();
-		this.echo("Type ");
-		this.echo("help", __colors__.blue);
-		this.echoLn(" to begin!");
+		this.echoLn("Welcome to MathleteDev's website!");
+		this.echo("Type ", __colors__.blue);
+		this.echo("help⏎", __colors__.yellow);
+		this.echoLn(" to begin!", __colors__.blue);
+		this.echo();
 	}
 
 	public echo = (text?: string, color?: string) => {
@@ -105,6 +107,15 @@ export default class Terminal {
 			this.root.insertBefore(br, this.line);
 
 			return this.line.scrollIntoView(false);
+		}
+
+		if (this.isUrl(text)) {
+			let a = document.createElement("a");
+			a.href = a.innerHTML = text;
+			a.style.color = color || __colors__.white;
+			a.className = "text";
+
+			return this.root.insertBefore(a, this.line);
 		}
 
 		let span = document.createElement("span");
@@ -151,6 +162,31 @@ export default class Terminal {
 		for (const elem of document.querySelectorAll(".text")) elem.remove();
 	}
 
+	public stat(stats: Record<string, Record<string, number>>, title: string) {
+		this.echoLn("┌───────────────────────────────┐");
+		this.echoLn(
+			`│${" ".repeat((31 - title.length) / 2)}${title}${" ".repeat(
+				Math.ceil((31 - title.length) / 2)
+			)}│`
+		);
+		this.echoLn("├────────────┬──────────────────┤");
+
+		for (const key in stats[title]) {
+			const exp = stats[title][key];
+
+			this.echo("│ ");
+			this.echo(`${key}${" ".repeat(10 - key.length)}`, __colors__.blue);
+			this.echo(" │ ");
+			this.echo(
+				"⬛".repeat(exp),
+				__colors__[exp > 12 ? "green" : exp > 8 ? "yellow" : "red"]
+			);
+			this.echoLn(`${" ".repeat(16 - exp)} │`);
+		}
+
+		this.echoLn("└────────────┴──────────────────┘");
+	}
+
 	private update() {
 		this.input.style.color = commands[this.command]
 			? __colors__.blue
@@ -162,5 +198,14 @@ export default class Terminal {
 			this.input.value.length,
 			this.input.value.length
 		);
+	}
+
+	private isUrl(text: string) {
+		try {
+			const url = new URL(text);
+			return url.protocol === "http:" || url.protocol === "https:";
+		} catch (_) {
+			return false;
+		}
 	}
 }
