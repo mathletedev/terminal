@@ -8,5 +8,6 @@ export const __colors__ = {
 	blue: "#61afef",
 	magenta: "#c678dd"
 };
+export const __char__ = 10.55;
 export const __mobile__ = /Mobi/.test(navigator.userAgent);
 export const __cursorDelay__ = 500;

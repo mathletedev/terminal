@@ -1,5 +1,5 @@
 import commands from "./commands";
-import { __colors__, __cursorDelay__ } from "./lib/constants";
+import { __char__, __colors__, __cursorDelay__ } from "./lib/constants";
 
 export default class Terminal {
 	public readonly created = Date.now();
@@ -100,13 +100,20 @@ export default class Terminal {
 		this.echo();
 	}
 
-	public echo = (text?: string, color?: string) => {
+	public echo(text?: string, color?: string) {
 		if (!text) {
 			const br = document.createElement("br");
 			br.className = "text";
 			this.root.insertBefore(br, this.line);
 
 			return this.line.scrollIntoView(false);
+		}
+
+		if (text.length > window.innerWidth / __char__) {
+			this.echoLn(text.substring(0, window.innerWidth / __char__), color);
+			this.echo(text.substring(window.innerWidth / __char__ + 1), color);
+
+			return;
 		}
 
 		if (this.isUrl(text)) {
@@ -124,7 +131,7 @@ export default class Terminal {
 		span.className = "text";
 
 		this.root.insertBefore(span, this.line);
-	};
+	}
 
 	public echoLn(text?: string, color?: string) {
 		if (text) this.echo(text, color);
@@ -154,7 +161,7 @@ export default class Terminal {
 				: `${18 - Math.pow(Math.sin(Date.now() / 300), 4) * 18}px`;
 
 		const pos =
-			-window.innerWidth + 22 + (this.input.selectionStart! + 1) * 10.55;
+			-window.innerWidth + 22 + (this.input.selectionStart! + 1) * __char__;
 		this.cursor.style.left = pos > 0 ? "0px" : `${pos}px`;
 	}
 
