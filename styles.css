@@ -1,0 +1,41 @@
+html {
+	background-color: #282c34;
+	font-family: "Cascadia Code";
+	font-size: 18px;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+	width: 0;
+}
+
+body {
+	margin: 0;
+}
+
+span {
+	white-space: pre;
+}
+
+input {
+	all: unset;
+	width: calc(100vw - 32px);
+	color: #dcdfe4;
+	caret-color: transparent;
+}
+
+#prompt {
+	color: #61afef;
+	margin-bottom: 10px;
+}
+
+#cursor {
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	width: 10.55px;
+	height: 18px;
+	vertical-align: middle;
+	background-color: #dcdfe4;
+}
