@@ -43,7 +43,7 @@ export default ((term) => {
 		info(i);
 	};
 
-	ascii("               WWNNWW    WNXXW", "neo@delta");
+	ascii("               WWNNWW    WNXXW", "neal@wang");
 	ascii("          WXOdlccc::cldxdl:,:K", "─────────");
 	ascii("        W0o;,,,,,,,'',:::;,'lN", 0);
 	ascii("      WKo'.';;::clloddoc:c:,xW", 1);
