@@ -22,7 +22,7 @@ export default ((term) => {
 		}
 
 		term.echo(command[0]);
-		term.echo(" => ", __colors__.cyan);
+		term.echo(" => ", __colors__.teal);
 		term.echoLn(command[1], __colors__.green);
 	}
 }) as Command;

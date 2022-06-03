@@ -19,8 +19,7 @@ export default ((term) => {
 		["🌐 Browser", parser.getBrowserName()],
 		[
 			"⌛ Uptime",
-			`${hours > 0 ? `${hours} hour${hours === 1 ? "" : "s"}, ` : ""}${
-				mins % 60
+			`${hours > 0 ? `${hours} hour${hours === 1 ? "" : "s"}, ` : ""}${mins % 60
 			} min${mins === 1 ? "" : "s"}`
 		],
 		["⌨️ Language", "TypeScript"],
@@ -29,7 +28,7 @@ export default ((term) => {
 
 	const info = (i: number) => {
 		term.echo(data[i][0], __colors__.blue);
-		term.echo(" => ", __colors__.cyan);
+		term.echo(" => ", __colors__.teal);
 		term.echoLn(data[i][1], __colors__.green);
 	};
 
@@ -38,7 +37,7 @@ export default ((term) => {
 
 		term.echo(`${text}${" ".repeat(34 - text.length)}`, __colors__.yellow);
 		if (i === undefined) return term.echo();
-		if (typeof i === "string") return term.echoLn(i, __colors__.magenta);
+		if (typeof i === "string") return term.echoLn(i, __colors__.mauve);
 
 		info(i);
 	};
@@ -62,7 +61,7 @@ export default ((term) => {
 	if (!__mobile__) return;
 	term.echo();
 
-	term.echoLn("neo@mathletedev", __colors__.magenta);
-	term.echoLn("---------------", __colors__.magenta);
+	term.echoLn("neo@mathletedev", __colors__.mauve);
+	term.echoLn("---------------", __colors__.mauve);
 	for (let i = 0; i < data.length; i++) info(i);
 }) as Command;

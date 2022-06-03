@@ -61,5 +61,5 @@ export default ((term) => {
 
 	term.error();
 	term.echo("Invalid argument ");
-	term.echoLn(args, __colors__.magenta);
+	term.echoLn(args, __colors__.mauve);
 }) as Command;
