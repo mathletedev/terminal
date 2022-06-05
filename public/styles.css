@@ -1,5 +1,5 @@
 html {
-	background-color: #24273a;
+	background-color: #1e1e2e;
 	font-family: "Cascadia Code";
 	font-size: 18px;
 	scrollbar-width: none;
@@ -21,12 +21,12 @@ span {
 input {
 	all: unset;
 	width: calc(100vw - 32px);
-	color: #cad3f5;
+	color: #cdd6f4;
 	caret-color: transparent;
 }
 
 #prompt {
-	color: #8aadf4;
+	color: #89b4fa;
 	margin-bottom: 10px;
 }
 
@@ -37,5 +37,5 @@ input {
 	width: 10.55px;
 	height: 18px;
 	vertical-align: middle;
-	background-color: #cad3f5;
+	background-color: #cdd6f4;
 }

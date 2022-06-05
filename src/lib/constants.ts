@@ -1,12 +1,12 @@
 export const __colors__ = {
-	black: "#24273a",
-	white: "#cad3f5",
-	red: "#ed8796",
-	yellow: "#eed49f",
-	green: "#a6da95",
-	teal: "#8bd5ca",
-	blue: "#8aadf4",
-	mauve: "#c6a0f6"
+	black: "#1e1e2e",
+	white: "#cdd6f4",
+	red: "#f38ba8",
+	yellow: "#f9e2af",
+	green: "#a6e3a1",
+	teal: "#94e2d5",
+	blue: "#89b4fa",
+	mauve: "#cba6f7"
 };
 export const __char__ = 10.55;
 export const __mobile__ = /Mobi/.test(navigator.userAgent);
